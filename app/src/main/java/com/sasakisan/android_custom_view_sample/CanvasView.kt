@@ -42,6 +42,11 @@ class CanvasView : View {
         invalidate()
     }
 
+    override fun performClick(): Boolean {
+        super.performClick()
+        return true
+    }
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         event?.let {
             when (event.action) {
@@ -54,6 +59,7 @@ class CanvasView : View {
                 }
                 MotionEvent.ACTION_UP -> {
                     drawingPath?.moveTo(event.x, event.y)
+                    performClick()
                 }
                 MotionEvent.ACTION_MOVE -> {
                     drawingPath?.lineTo(event.x, event.y)
